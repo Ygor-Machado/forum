@@ -16,7 +16,7 @@ interface SupportRepositoryInterface
 
     public function new(CreateSupportDTO $dto): stdClass;
 
-    public function update(UpdateSupportDTO $dto): stdClass | null  ;
+    public function update(UpdateSupportDTO $dto): stdClass | null ;
 
 
 }

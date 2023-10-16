@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\SupportEloquentORM;
+use App\Repositories\SupportRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,8 +14,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            \App\Repositories\SupportRepositoryInterface::class,
-            \App\Repositories\SupportEloquentORM::class
+            SupportRepositoryInterface::class,
+            SupportEloquentORM::class
         );
     }
 
