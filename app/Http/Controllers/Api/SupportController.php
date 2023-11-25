@@ -39,7 +39,13 @@ class SupportController extends Controller
      */
     public function show(string $id)
     {
-        //
+        if (!$support = $this->service->findOne($id)) {
+            return response()->json([
+                'error' => 'Support not found'
+            ], 404);
+        };
+
+        return new SupportResource($support);
     }
 
     /**
@@ -55,6 +61,14 @@ class SupportController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (!$this->service->findOne($id)) {
+            return response()->json([
+                'error' => 'Support not found'
+            ], 404);
+        };
+
+        $this->service->delete($id);
+
+        return response()->json([], 204);
     }
 }
