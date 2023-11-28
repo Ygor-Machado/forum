@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\DTO\Supports\CreateSupportDTO;
+use App\DTO\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSupportRequest;
 use App\Http\Resources\SupportResource;
@@ -19,9 +20,25 @@ class SupportController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $supports = $this->service->paginate(
+            page: $request->get('page',1),
+            totalPerPage: $request->get('per_page', 1),
+            filter: $request->filter,
+        );
+
+        return SupportResource::collection($supports->items())
+            ->additional([
+                'meta' => [
+                    'total' => $supports->total(),
+                    'is_first_page' => $supports->isFirstPage(),
+                    'is_last_page' => $supports->isLastPage(),
+                    'current_page' => $supports->currentPage(),
+                    'next_page' => $supports->getNumberNextPage(),
+                    'previous_page' => $supports->getNumberPreviousPage(),
+                ]
+            ]);
     }
 
     /**
@@ -51,9 +68,19 @@ class SupportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateSupportRequest $request, string $id)
     {
-        //
+        $support = $this->service->update(
+            UpdateSupportDTO::makeFromRequest($request, $id),
+        );
+
+        if(!$support) {
+            return response()->json([
+                'error' => 'Support not found'
+            ], 404);
+        }
+
+        return new SupportResource($support);
     }
 
     /**
