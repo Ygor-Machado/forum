@@ -19,7 +19,7 @@ class SupportController extends Controller
     }
     public function index(Request $request)
     {
-        $supports = $this->service->paginate(page: $request->get('page',1), totalPerPage: $request->get('per_page', 2), filter: $request->filter);
+        $supports = $this->service->paginate(page: $request->get('page',1), totalPerPage: $request->get('per_page', 7), filter: $request->filter);
 
         $filters = ['filter' => $request->get('filter', '')];
 
@@ -44,7 +44,7 @@ class SupportController extends Controller
     {
         $this->service->new(CreateSupportDTO::makeFromRequest($request));
 
-        return redirect()->route('supports.index');
+        return redirect()->route('supports.index')->with('message', 'Cadastrado com sucesso!');
     }
 
     public function edit(Support $support, $id)
@@ -64,14 +64,14 @@ class SupportController extends Controller
             return redirect()->back();
         }
 
-        return redirect()->route('supports.index');
+        return redirect()->route('supports.index')->with('message', 'Atualizado com sucesso!');
     }
 
     public function destroy($id)
     {
         $this->service->delete($id);
 
-        return redirect()->route('supports.index');
+        return redirect()->route('supports.index')->with('message', 'Deletado com sucesso!');
     }
 
 }
