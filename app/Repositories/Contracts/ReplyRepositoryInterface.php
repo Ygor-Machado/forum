@@ -7,7 +7,7 @@ use stdClass;
 
 interface ReplyRepositoryInterface
 {
-    public function getAllBySupportId(string $id): array;
+    public function getAllBySupportId(string $supportId): array;
 
     public function createNew(CreateReplyDTO $dto): stdClass;
 }

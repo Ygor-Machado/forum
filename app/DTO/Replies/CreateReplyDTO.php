@@ -5,8 +5,8 @@ namespace App\DTO\Replies;
 class CreateReplyDTO
 {
     public function __construct(
-        protected string $supportId,
-        protected string $content
+        public string $supportId,
+        public string $content
     ) {
     }
 

@@ -6,7 +6,7 @@ use App\DTO\Replies\CreateReplyDTO;
 
 class ReplySupportService
 {
-    public function getAllBySupportId(string $id): array
+    public function getAllBySupportId(string $supportId): array
     {
         return [];
     }
