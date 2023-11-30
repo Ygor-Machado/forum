@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Contracts;
+
+use stdClass;
 
 interface PaginationInterface
 {
