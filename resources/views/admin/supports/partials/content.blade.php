@@ -47,6 +47,17 @@
                             </td>
 
                             <td class="px-4 py-2 text-sm whitespace-nowrap flex">
+                                @can('owner', $support->user_id)
+                                    <form action="{{ route('supports.destroy', $support->id) }}" method="post">
+                                        @csrf()
+                                        @method('DELETE')
+                                        <button type="submit" class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg">
+                                            Deletar
+                                        </button>
+                                    </form>
+                                @else
+                                    --
+                                @endcan
                                 <a href="{{ route('supports.edit', $support->id) }}" class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg">
                                     Editar
                                 </a>

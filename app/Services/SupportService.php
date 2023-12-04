@@ -6,6 +6,7 @@ use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
 use App\Repositories\Contracts\PaginationInterface;
 use App\Repositories\Contracts\SupportRepositoryInterface;
+use Illuminate\Support\Facades\Gate;
 use stdClass;
 
 class SupportService
