@@ -23,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         SupportReplied::class => [
             SendMailWhenSupportReplied::class,
+            ChangeStatusSupport::class,
         ],
     ];
 
