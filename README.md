@@ -27,7 +27,7 @@ docker run --rm \
 
 Gere a key do projeto Laravel
 ```sh
-sailt art key:generate
+sail art key:generate
 ```
 
 Agora rode as migrations
